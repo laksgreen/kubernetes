@@ -13,5 +13,5 @@ spec:
     port: 443
     targetPort: wordpress-port
     protocol: TCP
-## I have configured the wordpress runs in AWS Load Balancer, If you would like to execute it in Minikube please change the type: nodePort
+## I have configured the wordpress runs in AWS Load Balancer, If you would like to execute it in Minikube please change the type: NodePort
   type: LoadBalancer

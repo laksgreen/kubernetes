@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-test-deployment
+  labels:
+    app: devops-test
+spec:
+  replicas: 3
+  selector:
+   matchLabels:
+     app: devops-test
+  template:
+    metadata:
+      labels:
+        app: devops-test
+    spec:
+      containers:
+      - name: devops-test
+        image: laksgreen/nodejs:18
+        ports:
+        - name: devops-port
+          containerPort: 3000
