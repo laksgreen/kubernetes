@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - name: nginx-port
+              containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/nginx/conf.d           
+        - name: nodejs
+          image: laksgreen/nodejs:18
+          ports:
+            - name: node-port
+              containerPort: 3000
+      volumes:
+        - name: config-volume
+          configMap:
+            name: nginx-config
+            items:
+            - key: nginx-proxy.conf
+              path: nginx-proxy.conf
